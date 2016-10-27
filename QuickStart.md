@@ -7,8 +7,9 @@ If you want to learn Javascript, you should rather try to ask [Google instead](h
 If you don't know what is The Things Network (TTN), please have a look at its wonderful dedicated [website](https://www.thethingsnetwork.org/)  
 Throughout this guide, I will try to introduce you to Espruino, a LoRa module called RN2483, and finally I will show you how to exchange data with the TTN infrastructure. With some basic Javascript knowledge, you should be able to send a "Hello World" message to your TTN dashboard in about 15 minutes (considering you already have the required hardware).  
 Talking about hardware... You should :
-1) own an Espruino board. A [Pico])(http://www.espruino.com/Pico) is perfect
-2) have a RN2483 module mounted on a commercial breadboard. If you have a solder iron, you can try to [do it yourself](https://github.com/yerpj/TTN_with_Espruino/images/DIYBreadboard.jpg)
+- [x] own an Espruino board. A [Pico])(http://www.espruino.com/Pico) is perfect
+- [x] have a RN2483 module mounted on a commercial breadboard (the one from Drazzy [on Tindie](https://www.tindie.com/products/DrAzzy/rn2483-breakout-bare-board/) for example). If you have a solder iron, you can try to [do it yourself](https://github.com/yerpj/TTN_with_Espruino/blob/master/images/DIYBreadboard.jpg)
+
 
 ##  ![alt text](http://www.espruino.com/images/logo.png "Espruino logo")Espruino?
 >Espruino is a JavaScript interpreter for microcontrollers. It is designed for devices with as little as 128kB Flash and 8kB >RAM.
