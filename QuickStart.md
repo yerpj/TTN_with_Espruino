@@ -9,6 +9,10 @@ Throughout this guide, I will try to introduce you to Espruino, a LoRa module ca
 Talking about hardware... You should :
 - [x] own an Espruino board. A [Pico])(http://www.espruino.com/Pico) is perfect
 - [x] have a RN2483 module mounted on a commercial breadboard (the one from Drazzy [on Tindie](https://www.tindie.com/products/DrAzzy/rn2483-breakout-bare-board/) for example). If you have a solder iron, you can try to [do it yourself](https://github.com/yerpj/TTN_with_Espruino/blob/master/images/DIYBreadboard.jpg)
+- [x] Be in the range of a TTN Gateway. If you don't know, this map can help you: [TTN gateway map](https://www.thethingsnetwork.org/map)
+- [x] know what '3V3', 'GND', 'pin 17',..., means.
+
+Your are OK with this list? Fine! GO on!
 
 
 ##  ![alt text](http://www.espruino.com/images/logo.png "Espruino logo")Espruino?
