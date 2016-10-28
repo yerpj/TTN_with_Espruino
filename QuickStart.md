@@ -18,7 +18,7 @@ Your are OK with this list? Fine! GO on!
 ##  ![alt text](http://www.espruino.com/images/logo.png "Espruino logo")Espruino?
 >Espruino is a JavaScript interpreter for microcontrollers. It is designed for devices with as little as 128kB Flash and 8kB >RAM.
 
-The project originated from [Gordon Williams](https://github.com/gfwilliams)
+The project originated from [Gordon Williams](https://github.com/gfwilliams).  
 If you have an idea of what is a microcontroller but you never got the chance to program one, you should really spend some time reading the [Espruino Quick Start](http://www.espruino.com/Quick+Start).  
 
 Espruino runs on microcontroller. Before going further in this guide you should have a look at the [supported hardware](http://www.espruino.com/Reference) and if you don't have any of those supported platforms, you may consider [buying one](http://www.espruino.com/Order#distributors).  
@@ -119,17 +119,17 @@ If you only want to get the devEUI without anything else, try with
 ```lora.getStatus(function(x){console.log(x.devEUI);})```
 
 ## Configure your LoRaWAN and connect
-[THIS SECTION SHOULD BE ADAPTED/CORRECTED BY SOMEONE SKILLED ON LoRaWAN CONFIG]
+[THIS SECTION SHOULD BE ADAPTED/CORRECTED BY SOMEONE SKILLED ON LoRaWAN CONFIG]  
 At this time you should already have a basic knowledge about [TTN](https://www.thethingsnetwork.org/). If not, so why are you still reading this guide :-) 
 For the purpose, I consider that you already know what are the [Network Session Key and Application Session Key](https://www.thethingsnetwork.org/wiki/LoRaWAN/Security#security-in-lorawan-and-ttn). You should not know much about that, only that they come from the [TTN Dashboard](https://staging.thethingsnetwork.org/applications) whenever you create an application and register a device using the devEUI you just retrieved.  
 Basically, just create 3 variables with the values given by your newly created application:
-```
-var devAddr="0000000000ABCDEF";
-var nwkSKey="00112233445566778899AABBCCDDEEFF";
-var appSKey="00112233445566778899AABBCCDDEEFF";
+```js
+var devAddr="0000000000ABCDEF";  
+var nwkSKey="00112233445566778899AABBCCDDEEFF";  
+var appSKey="00112233445566778899AABBCCDDEEFF";  
 ```
 And simply call `lora.LoRaWAN`like this:
-```
+```js
 lora.LoRaWAN(devAddr,nwkSKey,appSKey,fun­ction(x){console.log(x);});
 ```
 If you are covered by a TTN gateway, this function should return `OK`. 
@@ -138,7 +138,7 @@ If you are covered by a TTN gateway, this function should return `OK`.
 BEFORE SENDING OR RECEIVING ANY MESSAGE, REMEMBER THAT THE LORA BANDWIDTH IS VERY LIMITED AND YOU SHOULD CONSIDER EVERY SINGLE BYTE EXCHANGED AS  BANDWIDTH-CONSUMING  
 
 Now things go even easier. To send a message, just call `lora.LoraTX()`
-```
+```js
 lora.loraTX("Hello");
 ```
 
