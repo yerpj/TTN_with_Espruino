@@ -72,7 +72,7 @@ For the Pico, here is latest the binary: [1vXX.YYY](http://www.espruino.com/bina
 If your Espruino version is 1v87 or above, you are just fine.
 ##  <img src="https://raw.githubusercontent.com/yerpj/TTN_with_Espruino/master/images/RN2483.png" width="100"> RN2483 module
 The RN2483 module is a well known LoRa transceiver (mostly because it was the first certified module in EMEA). It embedds the LoRa stack, accessible trough a convenient serial port. I give you a few links, just in case you need it or by curiosity:
-- [datasheet](ww1.microchip.com/downloads/en/DeviceDoc/50002346B.pdf)
+- [datasheet](www.microchip.com/downloads/en/DeviceDoc/50002346B.pdf)
 - [Wiring up examples](https://www.thethingsnetwork.org/forum/t/how-to-build-your-first-ttn-node-arduino-rn2483/1574)
 - [Wiring up for Espruino](https://github.com/espruino/EspruinoDocs/blob/master/devices/RN2483.md#wiring-up)  
 You should follow the last link, as it has been written with love by [Gordon] and eventually you will need to know how to interface this module with Espruino, of course.
