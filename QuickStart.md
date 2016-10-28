@@ -29,12 +29,43 @@ Basically, Espruino gives you the opportunity to deal with electronics using onl
 
 OK you got it. 
 ### IDE
-You should have a look at the Espruino doc [HERE](https://github.com/espruino/EspruinoWebIDE#espruino-web-ide--)
-Historically this IDE was built as a Chrome app. As Google announced [they will kill Chrome apps soon](http://venturebeat.com/2016/08/19/google-will-kill-chrome-apps-for-windows-mac-and-linux-in-early-2018/), Espruino IDE can now be built using Node.js (`npm install espruino-web-ide`).  
+You should have a look at the Espruino IDE doc [HERE](https://github.com/espruino/EspruinoWebIDE#espruino-web-ide--)
+Historically this IDE was built (and is still) as a Chrome app. As Google announced [they will kill Chrome apps soon](http://venturebeat.com/2016/08/19/google-will-kill-chrome-apps-for-windows-mac-and-linux-in-early-2018/), Espruino IDE can now be built using Node.js (`npm install espruino-web-ide`).  
 Last but not least, you even can use it as a real [web page](https://github.com/espruino/EspruinoWebIDE#full-web-version), but this only give you access to hardware through Bluetooth or Serial-over-audio-Jack.
 
+The IDE is composed of 2 main parts. Left hand side is your console/serial port. Here you can read the output of your script that is running on Espruino board, and you can write any script live-time.  
+Right hand side is your editor. Here you can write your application. Once you want to test it, just press the `Send to Espruino`(3) button.  
+Talking about buttons (see following picture):
+ 1. Open a *.js file
+ 2. Save your script in a *.js file
+ 3. Send your script to Espruino
+ 4. Magic button. I let you discover it by yourself ;-)
+ 5. Connect/Disconnect your device. It is actually the Serial port manager
+ 6. Clear the console
+ 7. Settings. Click on the gear if you want to change Serial baudrate
+<img src="https://raw.githubusercontent.com/yerpj/TTN_with_Espruino/master/images/IDE.png" width="1000">  
+
 ### Say Hello with Espruino
-## RN2483 module
+Once you have your Espruino device connected to USB/Serial and your IDE is started, just try to write this line 
+```javascript
+console.log("Thank you for reading this guide :-)");
+```
+Click the button (3), and you should read in the console something like that
+```shell 
+>reset();
+=undefined
+ _____                 _
+|   __|___ ___ ___ _ _|_|___ ___
+|   __|_ -| . |  _| | | |   | . |
+|_____|___|  _|_| |___|_|_|_|___|
+          |_| http://espruino.com
+ 1v87.840 Copyright 2016 G.Williams
+>echo(0);
+Thank you for reading this guide :-)
+=undefined
+> 
+```
+## ![alt text]("https://raw.githubusercontent.com/yerpj/TTN_with_Espruino/master/images/RN2483.png) RN2483 module
 ### Get your Device ID
 ## Configure your LoRaWAN
 ## Connect to TTN
