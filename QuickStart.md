@@ -18,6 +18,7 @@ Your are OK with this list? Fine! GO on!
 ##  ![alt text](http://www.espruino.com/images/logo.png "Espruino logo")Espruino?
 >Espruino is a JavaScript interpreter for microcontrollers. It is designed for devices with as little as 128kB Flash and 8kB >RAM.
 
+The project originated from [Gordon Williams](https://github.com/gfwilliams)
 If you have an idea of what is a microcontroller but you never got the chance to program one, you should really spend some time reading the [Espruino Quick Start](http://www.espruino.com/Quick+Start).  
 
 Espruino runs on microcontroller. Before going further in this guide you should have a look at the [supported hardware](http://www.espruino.com/Reference) and if you don't have any of those supported platforms, you may consider [buying one](http://www.espruino.com/Order#distributors).  
@@ -74,7 +75,7 @@ The RN2483 module is a well known LoRa transceiver (mostly because it was the fi
 - [datasheet](ww1.microchip.com/downloads/en/DeviceDoc/50002346B.pdf)
 - [Wiring up examples](https://www.thethingsnetwork.org/forum/t/how-to-build-your-first-ttn-node-arduino-rn2483/1574)
 - [Wiring up for Espruino](https://github.com/espruino/EspruinoDocs/blob/master/devices/RN2483.md#wiring-up)  
-You should follow the last link, as it has been written with love by [Gordon](https://github.com/gfwilliams) (Creator of Espruino) and eventually you will need to know how to interface this module with Espruino, of course.
+You should follow the last link, as it has been written with love by [Gordon] and eventually you will need to know how to interface this module with Espruino, of course.
 ### make it accessible from Espruino
 Once you spent some time wiring up, unplugging, correcting, inverting, soldering, wiring up once again your mess between RN2483 and Espruino, try to configure your serial port (in my case I am using pins `B6` and `B7`) at 57600 Baud.
 ```js
@@ -114,7 +115,8 @@ The parameter passed to getStatus() method is only a callback to print out the r
 > 
 ```
 Fine, isn't it?
-If you only want to get the devEUI without anything else, try with `lora.getStatus(function(x){console.log(x.devEUI);})`
+If you only want to get the devEUI without anything else, try with 
+```lora.getStatus(function(x){console.log(x.devEUI);})```
 
 ## Configure your LoRaWAN and connect
 [THIS SECTION SHOULD BE ADAPTED/CORRECTED BY SOMEONE SKILLED ON LoRaWAN CONFIG]
@@ -126,7 +128,7 @@ var devAddr="0000000000ABCDEF";
 var nwkSKey="00112233445566778899AABBCCDDEEFF";
 var appSKey="00112233445566778899AABBCCDDEEFF";
 ```
-And simply call `lora.LoraWAN`like this:
+And simply call `lora.LoRaWAN`like this:
 ```
 lora.LoRaWAN(devAddr,nwkSKey,appSKey,fun­ction(x){console.log(x);});
 ```
