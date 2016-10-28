@@ -47,7 +47,7 @@ Talking about buttons (see following picture):
 
 ### Say Hello with Espruino
 Once you have your Espruino device connected to USB/Serial and your IDE is started, just try to write this line 
-```javascript
+```js
 console.log("Thank you for reading this guide :-)");
 ```
 Click the button (3), and you should read in the console something like that
@@ -65,11 +65,79 @@ Thank you for reading this guide :-)
 =undefined
 > 
 ```
-## ![alt text]("https://raw.githubusercontent.com/yerpj/TTN_with_Espruino/master/images/RN2483.png) RN2483 module
+###Checking you have a version supporting [Promises](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Promise)
+At the time of writing this guide, Promises are supported only from the [cutting-edge build](http://www.espruino.com/binaries/git/commits/master/). If your Espruino version is less than 1v88, you should upgrade your Espruino with version 1v87.xxx .   
+For the Pico, here is latest the binary: [1vXX.YYY](http://www.espruino.com/binaries/git/commits/master/espruino_1v87.890_pico_1r3_wiznet.bin)  
+If your Espruino version is 1v87 or above, you are just fine.
+##  <img src="https://raw.githubusercontent.com/yerpj/TTN_with_Espruino/master/images/RN2483.png" width="100"> RN2483 module
+The RN2483 module is a well known LoRa transceiver (mostly because it was the first certified module in EMEA). It embedds the LoRa stack, accessible trough a convenient serial port. I give you a few links, just in case you need it or by curiosity:
+- [datasheet](ww1.microchip.com/downloads/en/DeviceDoc/50002346B.pdf)
+- [Wiring up examples](https://www.thethingsnetwork.org/forum/t/how-to-build-your-first-ttn-node-arduino-rn2483/1574)
+- [Wiring up for Espruino](https://github.com/espruino/EspruinoDocs/blob/master/devices/RN2483.md#wiring-up)  
+You should follow the last link, as it has been written with love by [Gordon](https://github.com/gfwilliams) (Creator of Espruino) and eventually you will need to know how to interface this module with Espruino, of course.
+### make it accessible from Espruino
+Once you spent some time wiring up, unplugging, correcting, inverting, soldering, wiring up once again your mess between RN2483 and Espruino, try to configure your serial port (in my case I am using pins `B6` and `B7`) at 57600 Baud.
+```js
+Serial1.setup(57600, { tx:B6, rx:B7 });
+```
+And create a RN2483 object:
+```js
+var RN2483 = require("RN2483");
+```
+Finally create your lora object:
+If you already wired the RST pin of the RN2483 module, add it as the reset line (`B3`in my case). If not, don't care, it is not mandatory (at least for the purpose of this guide).
+```js
+var lora = new RN2483(Serial1, {reset:B3});
+```
 ### Get your Device ID
-## Configure your LoRaWAN
-## Connect to TTN
-### ABP method
-### OTAA method
+Now, download your script into your device. If you are lost, just copy-paste this script and press the `Send to Espruino`button:
+```js
+var RN2483 = require("RN2483");
+Serial1.setup(57600, { tx:B6, rx:B7 });
+var lora = new RN2483(Serial1, {reset:B3});
+```
+Once done, try to write `lora.getStatus(function(x){console.log(x);})` in the console.
+The parameter passed to getStatus() method is only a callback to print out the results of the function.
+```shell
+>lora.getStatus(function(x){console.log(x);})
+=undefined
+{
+  "EUI": "0000000000ABCDEF",
+  "VDD": 3.253,
+  "appEUI": "0000000000000000",
+  "devEUI": "0000000000ABCDEF",
+  "band": "868",
+  "dataRate": "5",
+  "rxDelay1": "1000",
+  "rxDelay2": "2000"
+ }
+> 
+```
+Fine, isn't it?
+If you only want to get the devEUI without anything else, try with `lora.getStatus(function(x){console.log(x.devEUI);})`
+
+## Configure your LoRaWAN and connect
+[THIS SECTION SHOULD BE ADAPTED/CORRECTED BY SOMEONE SKILLED ON LoRaWAN CONFIG]
+At this time you should already have a basic knowledge about [TTN](https://www.thethingsnetwork.org/). If not, so why are you still reading this guide :-) 
+For the purpose, I consider that you already know what are the [Network Session Key and Application Session Key](https://www.thethingsnetwork.org/wiki/LoRaWAN/Security#security-in-lorawan-and-ttn). You should not know much about that, only that they come from the [TTN Dashboard](https://staging.thethingsnetwork.org/applications) whenever you create an application and register a device using the devEUI you just retrieved.  
+Basically, just create 3 variables with the values given by your newly created application:
+```
+var devAddr="0000000000ABCDEF";
+var nwkSKey="00112233445566778899AABBCCDDEEFF";
+var appSKey="00112233445566778899AABBCCDDEEFF";
+```
+And simply call `lora.LoraWAN`like this:
+```
+lora.LoRaWAN(devAddr,nwkSKey,appSKey,fun­ction(x){console.log(x);});
+```
+If you are covered by a TTN gateway, this function should return `OK`. 
+
 ## Send a message
+BEFORE SENDING OR RECEIVING ANY MESSAGE, REMEMBER THAT THE LORA BANDWIDTH IS VERY LIMITED AND YOU SHOULD CONSIDER EVERY SINGLE BYTE EXCHANGED AS  BANDWIDTH-CONSUMING  
+
+Now things go even easier. To send a message, just call `lora.LoraTX()`
+```
+lora.loraTX("Hello");
+```
+
 ## Receive a message
