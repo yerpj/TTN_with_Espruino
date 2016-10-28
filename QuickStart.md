@@ -8,7 +8,7 @@ If you don't know what is The Things Network (TTN), please have a look at its wo
 Throughout this guide, I will try to introduce you to Espruino, a LoRa module called RN2483, and finally I will show you how to exchange data with the TTN infrastructure. With some basic Javascript knowledge, you should be able to send a "Hello World" message to your TTN dashboard in about 15 minutes (considering you already have the required hardware).  
 Talking about hardware... You should :
 - [x] own an Espruino board. A [Pico](http://www.espruino.com/Pico) is perfect
-- [x] have a RN2483 module mounted on a commercial breadboard (the one from Drazzy [on Tindie](https://www.tindie.com/products/DrAzzy/rn2483-breakout-bare-board/) for example). If you have a solder iron, you can try to [do it yourself](https://github.com/yerpj/TTN_with_Espruino/blob/master/images/DIYBreadboard.jpg)
+- [x] have a RN2483 module mounted on a commercial breadboard (the one from Drazzy [on Tindie](https://www.tindie.com/products/DrAzzy/rn2483-breakout-bare-board/) for example). If you have a solder iron, you can try to do it yourself <img src="https://raw.githubusercontent.com/yerpj/TTN_with_Espruino/master/images/DIYBreadboard.jpg" width="80">
 - [x] Be in the range of a TTN Gateway. If you don't know, this map can help you: [TTN gateway map](https://www.thethingsnetwork.org/map)
 - [x] know what '3V3', 'GND', 'pin 17',..., means.
 
@@ -29,7 +29,10 @@ Basically, Espruino gives you the opportunity to deal with electronics using onl
 
 OK you got it. 
 ### IDE
-You should have a look at the Espruino doc [HERE](https://github.com/espruino/EspruinoWebIDE)
+You should have a look at the Espruino doc [HERE](https://github.com/espruino/EspruinoWebIDE#espruino-web-ide--)
+Historically this IDE was built as a Chrome app. As Google announced [they will kill Chrome apps soon](http://venturebeat.com/2016/08/19/google-will-kill-chrome-apps-for-windows-mac-and-linux-in-early-2018/), Espruino IDE can now be built using Node.js (`npm install espruino-web-ide`).  
+Last but not least, you even can use it as a real [web page](https://github.com/espruino/EspruinoWebIDE#full-web-version), but this only give you access to hardware through Bluetooth or Serial-over-audio-Jack.
+
 ### Say Hello with Espruino
 ## RN2483 module
 ### Get your Device ID
