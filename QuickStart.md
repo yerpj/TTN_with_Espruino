@@ -134,7 +134,7 @@ And simply call `lora.LoRaWAN`like this:
 ```js
 lora.LoRaWAN(devAddr,nwkSKey,appSKey,fun­ction(x){console.log(x);});
 ```
-If you are covered by a TTN gateway, this function should return `OK`. 
+If you are within the coverage area of a gateway a TTN gateway, this function should return `OK`. 
 
 ## Send a message
 BEFORE SENDING OR RECEIVING ANY MESSAGE, REMEMBER THAT THE LORA BANDWIDTH IS VERY LIMITED AND YOU SHOULD CONSIDER EVERY SINGLE BYTE EXCHANGED AS  BANDWIDTH-CONSUMING  
