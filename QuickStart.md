@@ -14,7 +14,6 @@ Talking about hardware... You should :
 
 Your are OK with this list? Fine! GO on!
 
-
 ##  ![alt text](http://www.espruino.com/images/logo.png "Espruino logo")Espruino?
 >Espruino is a JavaScript interpreter for microcontrollers. It is designed for devices with as little as 128kB Flash and 8kB >RAM.
 
@@ -29,6 +28,7 @@ Basically, Espruino gives you the opportunity to deal with electronics using onl
 - I want to play Counter-Strike on a microcontroller: Well, you don't. You prefer spend your time playing with TTN :-)
 
 OK you got it. 
+
 ### IDE  
 You should have a look at the Espruino IDE doc [HERE](https://github.com/espruino/EspruinoWebIDE#espruino-web-ide--)
 Historically this IDE was built (and is still) as a Chrome app. As Google announced [they will kill Chrome apps soon](http://venturebeat.com/2016/08/19/google-will-kill-chrome-apps-for-windows-mac-and-linux-in-early-2018/), Espruino IDE can now be built using Node.js (`npm install espruino-web-ide`).  
@@ -66,10 +66,12 @@ Thank you for reading this guide :-)
 =undefined
 > 
 ```
+
 ###Checking you have a version supporting [Promises](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Promise)  
 At the time of writing this guide, Promises are supported only from the [cutting-edge build](http://www.espruino.com/binaries/git/commits/master/). If your Espruino version is less than 1v88, you should upgrade your Espruino with version 1v87.xxx .   
 For the Pico, here is latest the binary: [1vXX.YYY](http://www.espruino.com/binaries/git/commits/master/espruino_1v87.890_pico_1r3_wiznet.bin)  
 If your Espruino version is 1v87 or above, you are just fine.
+
 ##  <img src="https://raw.githubusercontent.com/yerpj/TTN_with_Espruino/master/images/RN2483.png" width="100"> RN2483 module
 The RN2483 module is a well known LoRa transceiver (mostly because it was the first certified module in EMEA). It embedds the LoRa stack, accessible trough a convenient serial port. I give you a few links, just in case you need it or by curiosity:
 - [datasheet](www.microchip.com/downloads/en/DeviceDoc/50002346B.pdf)
@@ -77,6 +79,7 @@ The RN2483 module is a well known LoRa transceiver (mostly because it was the fi
 - [RN2483 LoRa modules for Espruino](http://www.espruino.com/RN2483)
 - [Wiring up for Espruino](https://github.com/espruino/EspruinoDocs/blob/master/devices/RN2483.md#wiring-up)  
 You should follow the last link, as it has been written with love by [Gordon] and eventually you will need to know how to interface this module with Espruino, of course.
+
 ### make it accessible from Espruino  
 Once you spent some time wiring up, unplugging, correcting, inverting, soldering, wiring up once again your mess between RN2483 and Espruino, try to configure your serial port (in my case I am using pins `B6` and `B7`) at 57600 Baud.
 ```js
@@ -91,6 +94,7 @@ If you already wired the RST pin of the RN2483 module, add it as the reset line 
 ```js
 var lora = new RN2483(Serial1, {reset:B3});
 ```
+
 ### Get your Device ID  
 Now, download your script into your device. If you are lost, just copy-paste this script and press the `Send to Espruino`button:
 ```js
