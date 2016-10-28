@@ -2,7 +2,7 @@
 
 ## Introduction
 This Quickstart guide is meant to give you a basic knowledge on how to use Espruino to send/receive message to/from The Things Network.  
-If you want to learn Espruino, you should rather go [here](http://www.espruino.com).
+If you want to learn Espruino, you should rather go [here](http://www.espruino.com).  
 If you want to learn Javascript, you should rather try to ask [Google instead](https://www.google.ch/?gws_rd=ssl#q=javascript+basics).  
 If you don't know what is The Things Network (TTN), please have a look at its wonderful dedicated [website](https://www.thethingsnetwork.org/)  
 Throughout this guide, I will try to introduce you to Espruino, a LoRa mod ule called RN2483, and finally I will show you how to exchange data with the TTN infrastructure. With some basic Javascript knowledge, you should be able to send a "Hello World" message to your TTN dashboard in about 15 minutes (considering you already have the required hardware).  
