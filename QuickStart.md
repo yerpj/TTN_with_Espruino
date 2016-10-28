@@ -116,10 +116,12 @@ The parameter passed to getStatus() method is only a callback to print out the r
 ```
 Fine, isn't it?
 If you only want to get the devEUI without anything else, try with 
-```lora.getStatus(function(x){console.log(x.devEUI);})```
+```js
+lora.getStatus(function(x){console.log(x.devEUI);})
+```
 
 ## Configure your LoRaWAN and connect
-[THIS SECTION SHOULD BE ADAPTED/CORRECTED BY SOMEONE SKILLED ON LoRaWAN CONFIG]  
+[THIS SECTION SHOULD BE ADAPTED/CORRECTED BY SOMEONE SKILLED ON LoRaWAN CONFIG]
 At this time you should already have a basic knowledge about [TTN](https://www.thethingsnetwork.org/). If not, so why are you still reading this guide :-) 
 For the purpose, I consider that you already know what are the [Network Session Key and Application Session Key](https://www.thethingsnetwork.org/wiki/LoRaWAN/Security#security-in-lorawan-and-ttn). You should not know much about that, only that they come from the [TTN Dashboard](https://staging.thethingsnetwork.org/applications) whenever you create an application and register a device using the devEUI you just retrieved.  
 Basically, just create 3 variables with the values given by your newly created application:
