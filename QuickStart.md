@@ -8,7 +8,7 @@ If you don't know what is The Things Network (TTN), please have a look at its wo
 Throughout this guide, I will try to introduce you to Espruino, a LoRa mod ule called RN2483, and finally I will show you how to exchange data with the TTN infrastructure. With some basic Javascript knowledge, you should be able to send a "Hello World" message to your TTN dashboard in about 15 minutes (considering you already have the required hardware).  
 Talking about hardware... You should :
 - [x] own an Espruino board. A [Pico](http://www.espruino.com/Pico) is perfect
-- [x] have a RN2483 module mounted on a commercial breadboard (the one from Drazzy [on Tindie](https://www.tindie.com/products/DrAzzy/rn2483-breakout-bare-board/) for example [assembled version](https://www.tindie.com/products/DrAzzy/lorawan-rn2483rn2903-breakout-board-assembled/)). If you have a solder iron, you can try to do it yourself <img src="https://raw.githubusercontent.com/yerpj/TTN_with_Espruino/master/images/DIYBreadboard.jpg" width="80">
+- [x] have a RN2483 module mounted on a commercial breadboard (the one from Drazzy [on Tindie](https://www.tindie.com/products/DrAzzy/rn2483-breakout-bare-board/) for example [[assembled version](https://www.tindie.com/products/DrAzzy/lorawan-rn2483rn2903-breakout-board-assembled/)]). If you have a solder iron, you can try to do it yourself <img src="https://raw.githubusercontent.com/yerpj/TTN_with_Espruino/master/images/DIYBreadboard.jpg" width="80">
 - [x] Be in the range of a TTN Gateway. If you don't know, this map can help you: [TTN gateway map](https://www.thethingsnetwork.org/map)
 - [x] know what '3V3', 'GND', 'pin 17',..., means.
 
