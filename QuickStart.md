@@ -6,6 +6,8 @@ If you want to learn Espruino, you should rather go [here](http://www.espruino.c
 If you want to learn Javascript, you should rather try to ask [Google instead](https://www.google.ch/?gws_rd=ssl#q=javascript+basics).  
 If you don't know what is The Things Network (TTN), please have a look at its wonderful dedicated [website](https://www.thethingsnetwork.org/)  
 Throughout this guide, I will try to introduce you to Espruino, a LoRa mod ule called RN2483, and finally I will show you how to exchange data with the TTN infrastructure. With some basic Javascript knowledge, you should be able to send a "Hello World" message to your TTN dashboard in about 15 minutes (considering you already have the required hardware).  
+
+## Hardware
 Talking about hardware... You should :
 - [x] own an Espruino board. A [Pico](http://www.espruino.com/Pico) is perfect
 - [x] have a RN2483 module mounted on a commercial breadboard (the one from Drazzy [on Tindie](https://www.tindie.com/products/DrAzzy/rn2483-breakout-bare-board/) for example [[assembled version](https://www.tindie.com/products/DrAzzy/lorawan-rn2483rn2903-breakout-board-assembled/)]). If you have a solder iron, you can try to do it yourself <img src="https://raw.githubusercontent.com/yerpj/TTN_with_Espruino/master/images/DIYBreadboard.jpg" width="80">
@@ -128,8 +130,10 @@ lora.getStatus(function(x){console.log(x.devEUI);})
 ## Configure your LoRaWAN and connect
 [THIS SECTION SHOULD BE ADAPTED/CORRECTED BY SOMEONE SKILLED ON LoRaWAN CONFIG]
 At this time you should already have a basic knowledge about [TTN](https://www.thethingsnetwork.org/). If not, so why are you still reading this guide :-) 
-For the purpose, I consider that you already know what are the [Network Session Key and Application Session Key](https://www.thethingsnetwork.org/wiki/LoRaWAN/Security#security-in-lorawan-and-ttn). You should not know much about that, only that they come from the [TTN Dashboard](https://staging.thethingsnetwork.org/applications) whenever you create an application and register a device using the devEUI you just retrieved.  
-Basically, just create 3 variables with the values given by your newly created application:
+For the purpose, I consider that you already know what are the [Network Session Key and Application Session Key](https://www.thethingsnetwork.org/wiki/LoRaWAN/Security#security-in-lorawan-and-ttn). You should not know much about that, only that they come from the [TTN Dashboard](https://staging.thethingsnetwork.org/applications) whenever you create an application and register a device using the devEUI you just retrieved. 
+If it is the first time you are hearing about TTN Dashboard, [this link will help you to create an account and a first application](https://www.thethingsnetwork.org/docs/current/dashboard/). 
+
+On espruino side,  just create 3 variables with the values given by your newly created application:
 ```js
 var devAddr="0000000000ABCDEF";  
 var nwkSKey="00112233445566778899AABBCCDDEEFF";  
@@ -144,9 +148,53 @@ If you are within the coverage area of a gateway a TTN gateway, this function sh
 ## Send a message
 BEFORE SENDING OR RECEIVING ANY MESSAGE, REMEMBER THAT THE LORA BANDWIDTH IS VERY LIMITED AND YOU SHOULD CONSIDER EVERY SINGLE BYTE EXCHANGED AS  BANDWIDTH-CONSUMING  
 
+### From Espruino...
 Now things go even easier. To send a message, just call `lora.LoraTX()`
 ```js
 lora.loraTX("Hello");
 ```
+### ...to TTN
+#### with the TTN Dashboard
+Fine, hopefully the message has been sent out of the radio. If everything is going well, it should now be stored on the TTN dashboard (I am not sure but maybe you will need to open your dashboard BEFORE sending a message from the node in order to be able to visualize it. At the time of writing, messages seems to be stored within your session only).
 
+<img src="https://raw.githubusercontent.com/yerpj/TTN_with_Espruino/master/images/TTN_Dashboard.png" width="800"> 
+As you can see, a new message has been catched and you got some useful data:
+ - dev EUI: The originator of the message
+ - payload: The message you just sent (`Hello`) coded in ASCII
+ - time: If it indicates later that 23:00:00, you should consider to turn off your computer and go to sleep (Or not, because it is [UTC]). 
+ - frame: some kind of sequence number. Don't forget to read [this section](https://www.thethingsnetwork.org/wiki/LoRaWAN/Security#security-in-lorawan-and-ttn_frame-counters).
+ - RSSI: The field I prefer ! This means [Received Signal Strength Indication](https://fr.wikipedia.org/wiki/Received_Signal_Strength_Indication), in [dB]. The unit is not user friendly for non RF guys but basically -150 means that you are far from the gateway and -30 is that you are just next to it. 
+ - frequency: in [MHz]. It tells you on which channel the message was sent. Depending on the LoRaWAN configuration, one or more channels are being used. 
+  
+#### Or with Node.js
+```js
+var ttn = require('ttn');
+var appEUI = 'XXXX';
+var accessKey = 'XXXX';
+var client = new ttn.Client('staging.thethingsnetwork.org', appEUI, accessKey);
+client.on('uplink', function (msg) {
+  console.log('\r\nReceived message:');
+  console.log('Node:'+msg.devEUI);
+  console.log('RSSI:'+msg.metadata.rssi);
+  console.log('GW:'+msg.metadata.gateway_eui);
+  if(msg.fields.message)
+	console.log('Data:'+msg.fields.message);
+  if(msg.fields.raw)
+  {
+	  var b = new Buffer(msg.fields.raw, 'base64')
+	  console.log('Raw data:'+b.toString());
+  }
+  //console.log(msg);
+});
+
+client.on('activation', function (msg) {
+  console.log('Device activated:', msg.devEUI);
+});
+
+console.log("Application started");
+
+
+
+```
 ## Receive a message
+
