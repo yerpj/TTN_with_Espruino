@@ -54,7 +54,7 @@ Once you have your Espruino device connected to USB/Serial and your IDE is start
 console.log("Thank you for reading this guide :-)");
 ```
 Click the button (3), and you should read in the console something like that
-```shell 
+``` 
 >reset();
 =undefined
  _____                 _
